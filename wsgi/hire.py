@@ -55,7 +55,7 @@ class Vote(db.Model):
     vote = db.Column(db.Integer)
 
 ## Initialize database 
-db.create_all()
+#db.create_all()
 #admin = User(username=u'admin', password=u'0qww294e')
 #db.session.add(admin)
 #db.session.commit()
@@ -75,6 +75,10 @@ class LoginForm(Form):
 @app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
+
+@app.route('/huh')
+def huh():
+    return app.config['SQLALCHEMY_DATABASE_URI']
 
 ## Initialize login form
 @app.route('/login', methods=['GET', 'POST'])

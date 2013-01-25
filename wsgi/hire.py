@@ -102,13 +102,13 @@ def logout():
 def api_root():
     return
 
-@app.route("/api/canidates")
-def api_canidates():
-    return 'List of ' + url_for('api_canidates')
+@app.route("/api/candidates")
+def api_candidates():
+    return 'List of ' + url_for('api_candidates')
 
-@app.route('/api/canidate/new/<name>')
-def api_new_canidate(name):
-    return 'Canidate '+name+' added'
+@app.route('/api/candidate/new/<name>')
+def api_new_candidate(name):
+    return 'candidate '+name+' added'
 
 if __name__ == "__main__":
     app.run()

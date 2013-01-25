@@ -56,9 +56,9 @@ class Vote(db.Model):
 
 ## Initialize database 
 db.create_all()
-admin = User(username=u'admin', password=u'0qww294e')
-db.session.add(admin)
-db.session.commit()
+#admin = User(username=u'admin', password=u'0qww294e')
+#db.session.add(admin)
+#db.session.commit()
 
 ## Establish Flask_login - required
 @login_manager.user_loader

@@ -112,7 +112,7 @@ def api_new_candidate(name):
 
 @app.route('/api/panel/new/<name>')
 def api_new_panel(name):
-    return 'panel {0} created'.format(name)
+    return 'panel {0} added'.format(name)
 
 @app.route('/api/panel/<panelid>/candidate/<candidateid>/<action>')
 def api_new_panel(panelid, candidateid, action):

@@ -15,16 +15,12 @@ from flask.ext.sqlalchemy import SQLAlchemy
 # wtfroms
 from flask.ext.wtf import PasswordField, SubmitField, TextField, Form
 
-## Initialize DB
-DATABASE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                        '../private/hire.sqlite')
-
 ## Setup app
 app = Flask(__name__)
 app.config['DEBUG'] = True
 app.config['TESTING'] = True
 app.config['SECRET_KEY'] = os.urandom(24)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///%s' % DATABASE
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['OPENSHIFT_POSTGRESQL_DB_URL']
 
 ## Initialize extensions
 db = SQLAlchemy(app)

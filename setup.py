@@ -1,10 +1,13 @@
 from setuptools import setup
 
-setup(name='YourAppName',
+setup(name='HIREme',
       version='1.0',
-      description='OpenShift App',
-      author='Your Name',
-      author_email='example@example.com',
-      url='http://www.python.org/sigs/distutils-sig/',
-#      install_requires=['Django>=1.3'],
-     )
+      description='Rackspace HIRE',
+      author='Greg Swift',
+      author_email='greg.swift@rackspace.com',
+      url='http://hire.nytefyre.net',
+      install_requires=['Flask>=0.9',
+                        'Flask-Login>=0.1.3',
+                        'Flask-Restless>=0.9.1',
+                        'Flask-Shelve>=0.1.1'],
+     ),

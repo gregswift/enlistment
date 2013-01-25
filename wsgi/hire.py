@@ -47,6 +47,12 @@ class Panel(db.Model):
     candidateid = db.Column(db.Integer)
     results = db.Column(db.Integer)
 
+# define panelists model
+class Panelist(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    panelid = db.Column(db.Integer)
+    userid = db.Column(db.Integer)
+
 # define vote model
 class Vote(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -96,6 +102,7 @@ api_manager.create_api(Candidate, methods=['GET','POST'])
 #api_manager.create_api(Candidate, authentication_required_for=['GET','POST'],
 #                       authentication_function=auth_func)
 api_manager.create_api(Panel, methods=['GET','POST','PATCH'])
+api_manager.create_api(Panelist, methods=['GET','POST','PATCH'])
 #api_manager.create_api(Panel, authentication_required_for=['GET','POST','PATCH'],
 #                       authentication_function=auth_func)
 api_manager.create_api(Vote, methods=['GET','POST','PATCH'])

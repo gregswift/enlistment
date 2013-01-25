@@ -1,11 +1,12 @@
-from flask import Flask
-app = Flask(__name__)
+#!/usr/bin/python
 
 ## Login
 from flask import Flask, request, render_template, redirect, url_for, flash
 from flaskext.login import (LoginManager, current_user, login_required,
                             login_user, logout_user, UserMixin, AnonymousUser,
                             confirm_login, fresh_login_required)
+
+app = Flask(__name__)
 
 class User(UserMixin):
     def __init__(self, name, id, active=True):

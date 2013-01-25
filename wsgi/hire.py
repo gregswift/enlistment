@@ -92,13 +92,13 @@ def login():
 auth_func = lambda: current_user.is_authenticated()
 api_manager.create_api(User, authentication_required_for=['GET'],
                        authentication_function=auth_func)
-api_manager.create_api(Candidate)
+api_manager.create_api(Candidate, methods=['GET','POST'])
 #api_manager.create_api(Candidate, authentication_required_for=['GET','POST'],
 #                       authentication_function=auth_func)
-api_manager.create_api(Panel)
+api_manager.create_api(Panel, methods=['GET','POST','PATCH'])
 #api_manager.create_api(Panel, authentication_required_for=['GET','POST','PATCH'],
 #                       authentication_function=auth_func)
-api_manager.create_api(Vote)
+api_manager.create_api(Vote, methods=['GET','POST','PATCH'])
 #api_manager.create_api(Vote, authentication_required_for=['GET','POST','PATCH'],
 #                       authentication_function=auth_func)
 

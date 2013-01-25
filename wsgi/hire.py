@@ -106,11 +106,11 @@ def api_root():
 def api_candidates():
     return 'List of ' + url_for('api_candidates')
 
-@app.route('/api/candidate/new/<name>')
+@app.route('/api/new/candidate/<name>')
 def api_new_candidate(name):
     return 'candidate {0} added'.format(name)
 
-@app.route('/api/panel/new/<name>')
+@app.route('/api/new/panel/<name>')
 def api_new_panel(name):
     return 'panel {0} added'.format(name)
 

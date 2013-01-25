@@ -85,19 +85,20 @@ def login():
         user = User.query.filter_by(username=username,
                                     password=password).one()
         login_user(user)
-        return redirect(url_for('/'))
+        return redirect(url_for('index'))
     return render_template('login.html', form=form)
 
 # Step 8: create the API for User with the authentication guard.
 auth_func = lambda: current_user.is_authenticated()
-api_manager.create_api(User, authentication_required_for=['GET'],
-                       authentication_function=auth_func)
-api_manager.create_api(Candidate, authentication_required_for=['GET','POST'],
-                       authentication_function=auth_func)
-api_manager.create_api(Panel, authentication_required_for=['GET','POST','PATCH'],
-                       authentication_function=auth_func)
-api_manager.create_api(Vote, authentication_required_for=['GET','POST','PATCH'],
-                       authentication_function=auth_func)
+api_manager.create_api(User)
+#api_manager.create_api(User, authentication_required_for=['GET'],
+#                       authentication_function=auth_func)
+#api_manager.create_api(Candidate, authentication_required_for=['GET','POST'],
+#                       authentication_function=auth_func)
+#api_manager.create_api(Panel, authentication_required_for=['GET','POST','PATCH'],
+#                       authentication_function=auth_func)
+#api_manager.create_api(Vote, authentication_required_for=['GET','POST','PATCH'],
+#                       authentication_function=auth_func)
 
 if __name__ == "__main__":
     app.run()

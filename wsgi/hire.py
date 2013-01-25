@@ -109,5 +109,12 @@ api_manager.create_api(Vote, methods=['GET','POST','PATCH'])
 #api_manager.create_api(Vote, authentication_required_for=['GET','POST','PATCH'],
 #                       authentication_function=auth_func)
 
+# Results
+@app.route('/results/<panelid>', methods=['GET'])
+def return_results(panelid):
+    from sqlalchemy.orm import sessionmaker
+    session = sessionmaker(bind=db)
+    return session.query(func.sum(Vote.vote)).filter_by(Vote.panelid=panelid)
+
 if __name__ == "__main__":
     app.run()

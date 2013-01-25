@@ -17,7 +17,7 @@ from flask.ext.wtf import PasswordField, SubmitField, TextField, Form
 
 ## Initialize DB
 DATABASE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                        'hire.sqlite')
+                        '../private/hire.sqlite')
 
 ## Setup app
 app = Flask(__name__)

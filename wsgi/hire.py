@@ -57,11 +57,6 @@ class Vote(db.Model):
 ## Initialize database 
 db.create_all()
 
-## Initialize admin user
-admin = User(username=u'admin', password=u'0qww294e')
-db.session.add(admin)
-db.session.commit()
-
 ## Establish Flask_login - required
 @login_manager.user_loader
 def load_user(userid):
@@ -90,7 +85,7 @@ def login():
         user = User.query.filter_by(username=username,
                                     password=password).one()
         login_user(user)
-        return redirect(url_for('index'))
+        return redirect(url_for('/'))
     return render_template('login.html', form=form)
 
 # Step 8: create the API for User with the authentication guard.

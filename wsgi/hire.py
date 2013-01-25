@@ -1,12 +1,14 @@
 #!/usr/bin/python
 
-## Login
 from flask import Flask, request, render_template, redirect, url_for, flash
+
+app = Flask(__name__)
+
+
+## Login
 from flask.ext.login import (LoginManager, current_user, login_required,
                             login_user, logout_user, UserMixin, AnonymousUser,
                             confirm_login, fresh_login_required)
-
-app = Flask(__name__)
 
 class User(UserMixin):
     def __init__(self, name, id, active=True):
@@ -23,9 +25,10 @@ class Anonymous(AnonymousUser):
 
 
 USERS = {
-    1: User(u"Notch", 1),
-    2: User(u"Steve", 2),
-    3: User(u"Creeper", 3, False),
+    1: User(u"greg5320", 1),
+    2: User(u"josh.conant", 2),
+    3: User(u"jesse.gonzalez", 3),
+    4: User(u"jon.q.public", 4, False),
 }
 
 USER_NAMES = dict((u.name, u) for u in USERS.itervalues())

@@ -1,10 +1,6 @@
 from flask import Flask
 app = Flask(__name__)
 
-@app.route("/")
-def hello():
-    return "Hello World!"
-
 ## Login
 from flask import Flask, request, render_template, redirect, url_for, flash
 from flaskext.login import (LoginManager, current_user, login_required,

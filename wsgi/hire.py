@@ -97,7 +97,18 @@ def logout():
     return redirect(url_for("index"))
 
 
+## API
+@app.route("/api")
+def api_root():
+    return
 
+@app.route("/api/canidates")
+def api_canidates():
+    return 'List of ' + url_for('api_canidates')
+
+@app.route('/api/canidate/new/<name>')
+def api_new_canidate(name):
+    return 'Canidate '+name+' added'
 
 if __name__ == "__main__":
     app.run()

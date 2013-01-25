@@ -76,10 +76,6 @@ class LoginForm(Form):
 def index():
     return render_template('index.html')
 
-@app.route('/huh')
-def huh():
-    return app.config['SQLALCHEMY_DATABASE_URI']
-
 ## Initialize login form
 @app.route('/login', methods=['GET', 'POST'])
 def login():

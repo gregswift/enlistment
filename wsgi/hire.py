@@ -108,7 +108,27 @@ def api_candidates():
 
 @app.route('/api/candidate/new/<name>')
 def api_new_candidate(name):
-    return 'candidate '+name+' added'
+    return 'candidate {0} added'.format(name)
+
+@app.route('/api/panel/new/<name>')
+def api_new_panel(name):
+    return 'panel {0} created'.format(name)
+
+@app.route('/api/panel/<panelid>/candidate/<candidateid>/<action>')
+def api_new_panel(panelid, candidateid, action):
+    return 'canidate {0} {1}ed to panel {2}'.format(candidateid, action, panelid)
+
+@app.route('/api/panel/<panelid>/panelist/<name>/<action>')
+def api_add_panelist(panelid, name):
+    return 'panelist {0} {1}ed to panel {2}'.format(name, action, panelid)
+
+@app.route('/api/panel/<panelid>/vote/<vote>')
+def api_vote_candidate(panelid, vote):
+    return 'You voted {0} for panel {1}'.format(vote, panelid)
+
+@app.route('/api/panel/<panelid>/results')
+def api_vote_candidate(panelid):
+    return 'You ask for the results for the vote on panel {0}'.format(panelid)
 
 if __name__ == "__main__":
     app.run()

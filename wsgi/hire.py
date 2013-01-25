@@ -19,7 +19,7 @@ app = Flask(__name__)
 app.config['DEBUG'] = True
 app.config['TESTING'] = True
 app.config['SECRET_KEY'] = os.urandom(24)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['OPENSHIFT_POSTGRESQL_DB_URL']
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['OPENSHIFT_POSTGRESQL_DB_URL'] + os.environ['OPENSHIFT_APP_NAME'])
 
 ## Initialize extensions
 db = SQLAlchemy(app)
@@ -55,7 +55,7 @@ class Vote(db.Model):
     vote = db.Column(db.Integer)
 
 ## Initialize database 
-#db.create_all()
+db.create_all()
 #admin = User(username=u'admin', password=u'0qww294e')
 #db.session.add(admin)
 #db.session.commit()

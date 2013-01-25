@@ -1,7 +1,5 @@
 #!/usr/bin/python
 
-raise Exception
-
 ## Imports
 # system
 import os

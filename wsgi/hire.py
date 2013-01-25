@@ -13,6 +13,7 @@ from flask.ext.restless import APIManager
 from flask.ext.sqlalchemy import SQLAlchemy
 # wtfroms
 from flask.ext.wtf import PasswordField, SubmitField, TextField, Form
+from SQLAlchemy import func
 
 ## Setup app
 app = Flask(__name__)

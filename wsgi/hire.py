@@ -1,6 +1,9 @@
 #!/usr/bin/python
 
 ## Imports
+# system
+import os
+import os.path
 # base
 from flask import Flask, request, render_template, redirect, url_for, flash
 #login

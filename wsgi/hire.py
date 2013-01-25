@@ -13,7 +13,6 @@ from flask.ext.restless import APIManager
 from flask.ext.sqlalchemy import SQLAlchemy
 # wtfroms
 from flask.ext.wtf import PasswordField, SubmitField, TextField, Form
-from SQLAlchemy import func
 
 ## Setup app
 app = Flask(__name__)
@@ -114,8 +113,9 @@ api_manager.create_api(Vote, methods=['GET','POST','PATCH'])
 @app.route('/results/<panelid>', methods=['GET'])
 def return_results(panelid):
     from sqlalchemy.orm import sessionmaker
+    from sqlalchemy import func
     session = sessionmaker(bind=db)
-    return session.query(func.sum(Vote.vote)).filter_by(Vote.panelid=panelid)
+    return session.query(func.sum(Vote.vote).label='results').filter_by(Vote.panelid=panelid).all()
 
 if __name__ == "__main__":
     app.run()

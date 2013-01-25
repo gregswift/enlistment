@@ -30,7 +30,7 @@ login_manager.setup_app(app)
 ## Setup Database model
 
 # define user model
-class User(db.Model):
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.Unicode)
     password = db.Column(db.Unicode)

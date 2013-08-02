@@ -120,8 +120,8 @@ def register():
     return render_template('register.html', form=form)
 
 # Step 8: create the API for User with the authentication guard.
-auth_func = lambda: current_user.is_authenticated()
-api_manager.create_api(User, methods=['GET'])
+#auth_func = lambda: current_user.is_authenticated()
+api_manager.create_api(User, methods=['GET'], exclude_columns=['password'])
 #api_manager.create_api(User, authentication_required_for=['GET'],
 #                       authentication_function=auth_func)
 api_manager.create_api(Candidate, methods=['GET','POST'])
@@ -136,11 +136,11 @@ api_manager.create_api(Vote, methods=['GET','POST','PATCH'])
 #                       authentication_function=auth_func)
 
 # Results
-@app.route('/results/<panelid>', methods=['GET'])
-def return_results(panelid):
-    from sqlalchemy.orm import sessionmaker
-    from sqlalchemy import func
-    session = sessionmaker(bind=db)
+#@app.route('/results/<panelid>', methods=['GET'])
+#def return_results(panelid):
+#    from sqlalchemy.orm import sessionmaker
+#    from sqlalchemy import func
+#    session = sessionmaker(bind=db)
     #return session.query(func.sum(Vote.vote).label('results')).filter_by(Vote.panelid=panelid).all()
 
 if __name__ == "__main__":

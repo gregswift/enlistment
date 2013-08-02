@@ -27,6 +27,10 @@ api_manager = APIManager(app, flask_sqlalchemy_db=db)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
+## API Versioning
+VERSION = '1'
+API_PATH = '/api/v{1}'.format(VERSION)
+
 ## Setup Database model
 
 # define user model
@@ -121,17 +125,18 @@ def register():
 
 # Step 8: create the API for User with the authentication guard.
 #auth_func = lambda: current_user.is_authenticated()
-api_manager.create_api(User, methods=['GET'], exclude_columns=['password'])
+api_manager.create_api(User, methods=['GET'], url_prefix=API_VERSION,
+        exclude_columns=['password'])
 #api_manager.create_api(User, authentication_required_for=['GET'],
 #                       authentication_function=auth_func)
-api_manager.create_api(Candidate, methods=['GET','POST'])
+api_manager.create_api(Candidate, methods=['GET','POST'], url_prefix=API_VERSION)
 #api_manager.create_api(Candidate, authentication_required_for=['GET','POST'],
 #                       authentication_function=auth_func)
-api_manager.create_api(Panel, methods=['GET','POST','PATCH'])
-api_manager.create_api(Panelist, methods=['GET','POST','PATCH'])
+api_manager.create_api(Panel, methods=['GET','POST','PATCH'], url_prefix=API_VERSION)
+api_manager.create_api(Panelist, methods=['GET','POST','PATCH'], url_prefix=API_VERSION)
 #api_manager.create_api(Panel, authentication_required_for=['GET','POST','PATCH'],
 #                       authentication_function=auth_func)
-api_manager.create_api(Vote, methods=['GET','POST','PATCH'])
+api_manager.create_api(Vote, methods=['GET','POST','PATCH'], url_prefix=API_VERSION)
 #api_manager.create_api(Vote, authentication_required_for=['GET','POST','PATCH'],
 #                       authentication_function=auth_func)
 

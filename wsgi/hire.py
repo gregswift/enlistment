@@ -121,7 +121,7 @@ def register():
 
 # Step 8: create the API for User with the authentication guard.
 auth_func = lambda: current_user.is_authenticated()
-api_manager.create_api(User, authentication_required_for=['GET'])
+api_manager.create_api(User, methods=['GET'])
 #api_manager.create_api(User, authentication_required_for=['GET'],
 #                       authentication_function=auth_func)
 api_manager.create_api(Candidate, methods=['GET','POST'])

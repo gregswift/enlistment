@@ -103,7 +103,7 @@ def login():
 
 ## Initialize login form
 @app.route('/register', methods=['GET', 'POST'])
-def login():
+def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         #

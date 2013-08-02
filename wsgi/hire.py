@@ -9,11 +9,10 @@ from flask import Flask, request, render_template, redirect, url_for, flash
 from flask.ext.login import current_user, login_user, LoginManager, UserMixin
 # restless
 from flask.ext.restless import APIManager
+# sqlalchemy
+from flask.ext.sqlalchemy import SQLAlchemy
 # wtfroms
 from flask.ext.wtf import PasswordField, SubmitField, TextField, Form
-
-## Import backend db
-import hire.db as backend
 
 ## Enable logentries for external logging
 from logentries import LogentriesHandler
@@ -30,13 +29,46 @@ app.config['SECRET_KEY'] = os.urandom(24)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['OPENSHIFT_POSTGRESQL_DB_URL'] + os.environ['OPENSHIFT_APP_NAME']
 
 ## Initialize extensions
-db = backend.initialize(app)
+db = SQLAlchemy(app)
 api_manager = APIManager(app, flask_sqlalchemy_db=db)
 login_manager = LoginManager()
 login_manager.setup_app(app)
 
+## Setup Database model
+
+# define user model
+class User(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.Unicode)
+    password = db.Column(db.Unicode)
+
+# define candidate model
+class Candidate(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Unicode)
+
+# define panel model
+class Panel(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Unicode)
+    candidateid = db.Column(db.Integer)
+    results = db.Column(db.Integer)
+
+# define panelists model
+class Panelist(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    panelid = db.Column(db.Integer)
+    userid = db.Column(db.Integer)
+
+# define vote model
+class Vote(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    panelid = db.Column(db.Integer)
+    userid = db.Column(db.Integer)
+    vote = db.Column(db.Integer)
+
 ## Initialize database 
-backend.create_all(db)
+db.create_all()
 
 ## Establish Flask_login - required
 @login_manager.user_loader
@@ -90,7 +122,7 @@ def return_results(panelid):
     from sqlalchemy.orm import sessionmaker
     from sqlalchemy import func
     session = sessionmaker(bind=db)
-    #return session.query(func.sum(Vote.vote).label('results')).filter_by(Vote.panelid=panelid).all()
+    return session.query(func.sum(Vote.vote).label('results')).filter_by(Vote.panelid=panelid).all()
 
 if __name__ == "__main__":
     app.run()

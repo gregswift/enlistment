@@ -9,8 +9,6 @@ from flask import Flask, request, render_template, redirect, url_for, flash
 from flask.ext.login import current_user, login_user, LoginManager, UserMixin
 # restless
 from flask.ext.restless import APIManager
-# sqlalchemy
-from flask.ext.sqlalchemy import SQLAlchemy
 # wtfroms
 from flask.ext.wtf import PasswordField, SubmitField, TextField, Form
 

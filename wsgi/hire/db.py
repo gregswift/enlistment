@@ -1,8 +1,8 @@
 #!/usr/bin/python
 
 ## Imports
-# system
-import os
+# sqlalchemy
+from flask.ext.sqlalchemy import SQLAlchemy
 
 ## Initialize extensions
 db = SQLAlchemy(app)

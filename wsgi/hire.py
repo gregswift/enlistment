@@ -44,7 +44,7 @@ class Candidate(db.Model):
 class Panel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Unicode)
-    owner = db.Column(db.Integer, db.ForeignKey('user.id')
+    owner = db.Column(db.Integer, db.ForeignKey('user.id'))
     candidateid = db.Column(db.Integer, db.ForeignKey('candidate.id'))
     results = db.Column(db.Integer)
 

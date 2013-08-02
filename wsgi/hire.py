@@ -113,8 +113,9 @@ def register():
         password, confirm = form.password.data, form.confirm_password.data
         if password != confirm:
             return redirect(url_for('register'))
-        user = User.query.filter_by(username=username,
-                                    password=password).one()
+        user = User(username, password)
+        db.session.add(user)
+        db.session.commit()
         login_user(user)
         return redirect(url_for('index'))
     return render_template('register.html', form=form)
@@ -133,7 +134,7 @@ api_manager.create_api(Panel, methods=WRITEABLE)
 api_manager.create_api(Panelist, methods=WRITEABLE)
 #api_manager.create_api(Panel, authentication_required_for=['GET','POST','PATCH'],
 #                       authentication_function=auth_func)
-api_manager.create_api(Vote, methods=WRITEABLE)
+api_manager.create_api(Vote, methods=WRITEABLE, allow_functions=True)
 #api_manager.create_api(Vote, authentication_required_for=['GET','POST','PATCH'],
 #                       authentication_function=auth_func)
 

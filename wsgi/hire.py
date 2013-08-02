@@ -29,7 +29,7 @@ login_manager.init_app(app)
 
 ## API Versioning
 VERSION = '1'
-API_PATH = '/api/v{p}'.format(VERSION)
+API_PATH = '/api/v{0}'.format(VERSION)
 
 ## Setup Database model
 

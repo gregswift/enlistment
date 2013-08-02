@@ -74,6 +74,13 @@ class LoginForm(Form):
     password = PasswordField('password')
     submit = SubmitField('Login')
 
+## Create Registration Form
+class RegistrationForm(Form):
+    username = TextField('username')
+    password = PasswordField('password')
+    confirm_password = PasswordField('confirm_password')
+    submit = SubmitField('Register')
+
 ## Initialize main page
 @app.route('/', methods=['GET'])
 def index():
@@ -93,6 +100,24 @@ def login():
         login_user(user)
         return redirect(url_for('index'))
     return render_template('login.html', form=form)
+
+## Initialize login form
+@app.route('/register', methods=['GET', 'POST'])
+def login():
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        #
+        # you would check username and password here...
+        #
+        username = form.username.data
+        password, confirm = form.password.data, form.confirm_password.data
+        if password != confirm:
+            return redirect(url_for('register'))
+        user = User.query.filter_by(username=username,
+                                    password=password).one()
+        login_user(user)
+        return redirect(url_for('index'))
+    return render_template('register.html', form=form)
 
 # Step 8: create the API for User with the authentication guard.
 auth_func = lambda: current_user.is_authenticated()

@@ -25,7 +25,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['OPENSHIFT_POSTGRESQL_DB_URL'
 db = SQLAlchemy(app)
 api_manager = APIManager(app, flask_sqlalchemy_db=db)
 login_manager = LoginManager()
-login_manager.setup_app(app)
+login_manager.init_app(app)
 
 ## Setup Database model
 

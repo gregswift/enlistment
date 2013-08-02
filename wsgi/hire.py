@@ -44,20 +44,20 @@ class Candidate(db.Model):
 class Panel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Unicode)
-    candidateid = db.Column(db.Integer)
+    candidateid = db.Column(db.Integer, db.ForeignKey('candidate.id'))
     results = db.Column(db.Integer)
 
 # define panelists model
 class Panelist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    panelid = db.Column(db.Integer)
-    userid = db.Column(db.Integer)
+    panelid = db.Column(db.Integer, db.ForeignKey('panel.id'))
+    userid = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 # define vote model
 class Vote(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    panelid = db.Column(db.Integer)
-    userid = db.Column(db.Integer)
+    panelid = db.Column(db.Integer, db.ForeignKey('panel.id'))
+    userid = db.Column(db.Integer, db.ForeignKey('user.id'))
     vote = db.Column(db.Integer)
 
 ## Initialize database 

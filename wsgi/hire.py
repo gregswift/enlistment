@@ -14,6 +14,13 @@ from flask.ext.sqlalchemy import SQLAlchemy
 # wtfroms
 from flask.ext.wtf import PasswordField, SubmitField, TextField, Form
 
+## Enable logentries for external logging
+from logentries import LogentriesHandler
+import logging
+
+log = logging.getLogger('logentries')
+log.addHandler(LogentriesHandler('86d1df26-b7e7-4ed1-9b30-2c1ef0bd0f6b'))
+
 ## Setup app
 app = Flask(__name__)
 app.config['DEBUG'] = True

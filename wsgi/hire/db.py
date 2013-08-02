@@ -4,12 +4,6 @@
 # sqlalchemy
 from flask.ext.sqlalchemy import SQLAlchemy
 
-## Initialize extensions
-db = SQLAlchemy(app)
-api_manager = APIManager(app, flask_sqlalchemy_db=db)
-login_manager = LoginManager()
-login_manager.setup_app(app)
-
 ## Setup Database model
 
 # define user model

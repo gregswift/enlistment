@@ -13,6 +13,9 @@ from flask.ext.restless import APIManager
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.wtf import PasswordField, SubmitField, TextField, Form
 
+READONLY = ['GET']
+WRITEABLE = ['GET','POST','PATCH','PUT']
+
 app = Flask(__name__)
 app.config['DEBUG'] = True
 app.config['TESTING'] = True
@@ -107,8 +110,6 @@ def register():
         return redirect(url_for('index'))
     return render_template('register.html', form=form)
 
-READONLY = ['GET']
-WRITEABLE = ['GET','POST','PATCH','PUT']
 api_manager.create_api(User, methods=READONLY, exclude_columns=['password'])
 api_manager.create_api(Candidate, methods=WRITEABLE)
 api_manager.create_api(Panel, methods=WRITEABLE)

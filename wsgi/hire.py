@@ -1,7 +1,7 @@
 #!/usr/bin/python2
 '''
     Hire App for Rackspace
-        - Web Service and API used for Candidate voting of the H.I.R.E. process
+        - Web Service and API for voting on Candidates using the H.I.R.E. Process
 
     Contributors: Greg Swift, Tony Rogers, Josh Conant
 '''

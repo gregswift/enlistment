@@ -1,6 +1,6 @@
 from setuptools import setup
 
-setup(name='HIREme',
+setup(name='RSHIRE',
       version='1.0',
       description='Rackspace HIRE',
       author='Greg Swift',
